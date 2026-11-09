@@ -10,7 +10,6 @@
     :root {
       color-scheme: dark;
       --bark: #39251d;
-      --bark-light: #513326;
       --cream: #fff3dc;
       --muted: #d0b9a2;
       --rust: #d76636;
@@ -19,17 +18,10 @@
       --line: rgba(255,255,255,.12);
     }
     * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      color: var(--cream);
-      background: radial-gradient(ellipse at 82% 0%, #784629 0, transparent 34rem), var(--bark);
-      font-family: ui-rounded, "Trebuchet MS", system-ui, -apple-system, sans-serif;
-    }
+    body { margin: 0; min-height: 100vh; color: var(--cream); background: radial-gradient(ellipse at 82% 0%, #784629 0, transparent 34rem), var(--bark); font-family: ui-rounded, "Trebuchet MS", system-ui, -apple-system, sans-serif; }
     button, input { font: inherit; }
     button { color: inherit; }
     .fall-leaves { position: fixed; inset: 0; pointer-events: none; opacity: .22; z-index: 0; background-image: radial-gradient(9px 5px at 30px 40px,#f0b94f 50%,transparent 55%),radial-gradient(8px 5px at 130px 160px,#d76636 50%,transparent 55%),radial-gradient(7px 5px at 220px 80px,#f0b94f 50%,transparent 55%); background-size: 270px 220px; }
-    @keyframes drift { to { background-position: 0 220px; } }
     .site { position: relative; z-index: 1; }
     .topbar { height: 74px; display:flex; align-items:center; justify-content:space-between; max-width:1240px; padding:0 28px; margin:auto; border-bottom:1px solid var(--line); }
     .brand { display:flex; align-items:center; gap:11px; font-size:19px; font-weight:900; letter-spacing:-.5px; }
@@ -62,6 +54,7 @@
     .library-head { display:flex; align-items:center; justify-content:space-between; margin:0 0 15px; }
     .library-head h2 { margin:0; font-size:16px; }
     .count { color:var(--muted); font-size:12px; }
+    .game-list { display:grid; gap:10px; }
     .game-card { width:100%; display:flex; align-items:center; gap:13px; text-align:left; border:1px solid var(--line); border-radius:15px; background:#ffffff08; padding:12px; cursor:pointer; transition:.18s ease; }
     .game-card:hover, .game-card.selected { border-color:#f0b94f99; background:#f0b94f12; transform:translateY(-1px); }
     .game-icon { flex:0 0 52px; height:52px; display:grid; place-items:center; border-radius:13px; background:linear-gradient(145deg,#d76636,#a9432b); font-size:27px; }
@@ -99,17 +92,22 @@
       </section>
       <section class="content" aria-label="Game library">
         <article class="game-panel" aria-label="Game player">
-          <div class="panel-heading"><div><div class="game-title">Slope</div><div class="game-category">⭐ Skill &nbsp;·&nbsp; 🕹️ Arcade</div></div><div class="live">● Ready to play</div></div>
+          <div class="panel-heading"><div><div class="game-title" id="game-title">Slope</div><div class="game-category">⭐ Skill &nbsp;·&nbsp; 🕹️ Arcade</div></div><div class="live">● Ready to play</div></div>
           <div class="frame-wrap">
-            <iframe class="game-iframe" id="game-area" src="https://highwaytrafficunblocked.github.io/a/slope" width="480" height="800" scrolling="none" frameborder="0" allowfullscreen></iframe>
+            <iframe class="game-iframe" id="game-area" src="https://highwaytrafficunblocked.github.io/a/slope" width="480" height="800" scrolling="none" frameborder="0" allowfullscreen title="Slope game"></iframe>
           </div>
           <div class="game-foot"><span>Having trouble? The game is hosted by an external site.</span><span>🍁 Happy Thanksgiving!</span></div>
         </article>
         <aside class="library-panel">
-          <div class="library-head"><h2>Choose your game</h2><span class="count" id="count">1 game</span></div>
-          <button class="game-card selected" type="button" data-name="slope" data-tags="arcade skill" aria-label="Play Slope">
-            <span class="game-icon" aria-hidden="true">🎢</span><span class="card-copy"><strong>Slope</strong><small>Skill · Arcade</small></span><span class="play-arrow" aria-hidden="true">›</span>
-          </button>
+          <div class="library-head"><h2>Choose your game</h2><span class="count" id="count">2 games</span></div>
+          <div class="game-list" id="game-list">
+            <button class="game-card selected" type="button" data-name="slope" data-tags="arcade skill" data-title="Slope" data-src="https://highwaytrafficunblocked.github.io/a/slope" aria-label="Play Slope">
+              <span class="game-icon" aria-hidden="true">🎢</span><span class="card-copy"><strong>Slope</strong><small>Skill · Arcade</small></span><span class="play-arrow" aria-hidden="true">›</span>
+            </button>
+            <button class="game-card" type="button" data-name="stickman hook" data-tags="arcade skill" data-title="Stickman Hook" data-src="https://highwaytrafficunblocked.github.io/a/stickman-hook" aria-label="Play Stickman Hook">
+              <span class="game-icon" aria-hidden="true">🪝</span><span class="card-copy"><strong>Stickman Hook</strong><small>Skill · Arcade</small></span><span class="play-arrow" aria-hidden="true">›</span>
+            </button>
+          </div>
           <div class="empty" id="empty">No games found. Try another search or category. 🍂</div>
           <div class="tip"><strong>🦃 Autumn tip</strong><br>Pick a category or search the library to find your next game. More games can be added here anytime!</div>
         </aside>
@@ -119,19 +117,27 @@
   </div>
   <script>
     const categoryButtons = [...document.querySelectorAll('.category')];
-    const gameCard = document.querySelector('.game-card');
+    const gameCards = [...document.querySelectorAll('.game-card')];
     const search = document.querySelector('#search');
     const empty = document.querySelector('#empty');
     const count = document.querySelector('#count');
+    const gameFrame = document.querySelector('#game-area');
+    const gameTitle = document.querySelector('#game-title');
     let category = 'all';
+
     function updateGames() {
-      const matchesText = gameCard.dataset.name.includes(search.value.trim().toLowerCase());
-      const matchesCategory = category === 'all' || gameCard.dataset.tags.split(' ').includes(category);
-      const visible = matchesText && matchesCategory;
-      gameCard.hidden = !visible;
-      empty.style.display = visible ? 'none' : 'block';
-      count.textContent = visible ? '1 game' : '0 games';
+      let visibleCount = 0;
+      gameCards.forEach(card => {
+        const matchesText = card.dataset.name.includes(search.value.trim().toLowerCase());
+        const matchesCategory = category === 'all' || card.dataset.tags.split(' ').includes(category);
+        const visible = matchesText && matchesCategory;
+        card.hidden = !visible;
+        if (visible) visibleCount++;
+      });
+      empty.style.display = visibleCount ? 'none' : 'block';
+      count.textContent = `${visibleCount} ${visibleCount === 1 ? 'game' : 'games'}`;
     }
+
     categoryButtons.forEach(button => button.addEventListener('click', () => {
       category = button.dataset.category;
       categoryButtons.forEach(item => {
@@ -141,11 +147,16 @@
       });
       updateGames();
     }));
+
     search.addEventListener('input', updateGames);
-    gameCard.addEventListener('click', () => {
-      document.querySelector('#game-area').scrollIntoView({ behavior: 'smooth', block: 'center' });
-      document.querySelector('#game-area').focus({ preventScroll: true });
-    });
+    gameCards.forEach(card => card.addEventListener('click', () => {
+      gameCards.forEach(item => item.classList.toggle('selected', item === card));
+      gameTitle.textContent = card.dataset.title;
+      gameFrame.title = `${card.dataset.title} game`;
+      if (gameFrame.src !== card.dataset.src) gameFrame.src = card.dataset.src;
+      gameFrame.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      gameFrame.focus({ preventScroll: true });
+    }));
   </script>
 </body>
 </html>
