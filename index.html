@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#102b24">
-  <meta name="description" content="Take a festive break with Christmas Arcade: a cozy collection of browser games.">
-  <title>Christmas Arcade — Festive Games</title>
+  <meta name="theme-color" content="#39251d">
+  <meta name="description" content="Take a festive break with Thanksgiving Arcade: a cozy collection of browser games.">
+  <title>Thanksgiving Arcade — Fall Games</title>
   <style>
     :root {
       color-scheme: dark;
-      --pine: #102b24;
-      --pine-light: #173a30;
-      --cream: #fff7e8;
-      --muted: #b7c8bd;
-      --red: #ef5c55;
-      --gold: #f3c76b;
+      --bark: #39251d;
+      --bark-light: #513326;
+      --cream: #fff3dc;
+      --muted: #d0b9a2;
+      --rust: #d76636;
+      --gold: #f0b94f;
       --panel: rgba(255,255,255,.075);
       --line: rgba(255,255,255,.12);
     }
@@ -23,48 +23,48 @@
       margin: 0;
       min-height: 100vh;
       color: var(--cream);
-      background: radial-gradient(ellipse at 82% 0%, #285343 0, transparent 34rem), var(--pine);
+      background: radial-gradient(ellipse at 82% 0%, #784629 0, transparent 34rem), var(--bark);
       font-family: ui-rounded, "Trebuchet MS", system-ui, -apple-system, sans-serif;
     }
     button, input { font: inherit; }
     button { color: inherit; }
-    .snow { position: fixed; inset: 0; pointer-events: none; opacity: .48; z-index: 0; background-image: radial-gradient(2px 2px at 30px 40px,#fff 50%,transparent 55%),radial-gradient(1.5px 1.5px at 110px 120px,#fff 50%,transparent 55%),radial-gradient(2px 2px at 180px 70px,#fff 50%,transparent 55%); background-size: 220px 190px; animation: drift 24s linear infinite; }
-    @keyframes drift { to { background-position: 0 190px; } }
+    .fall-leaves { position: fixed; inset: 0; pointer-events: none; opacity: .22; z-index: 0; background-image: radial-gradient(9px 5px at 30px 40px,#f0b94f 50%,transparent 55%),radial-gradient(8px 5px at 130px 160px,#d76636 50%,transparent 55%),radial-gradient(7px 5px at 220px 80px,#f0b94f 50%,transparent 55%); background-size: 270px 220px; }
+    @keyframes drift { to { background-position: 0 220px; } }
     .site { position: relative; z-index: 1; }
     .topbar { height: 74px; display:flex; align-items:center; justify-content:space-between; max-width:1240px; padding:0 28px; margin:auto; border-bottom:1px solid var(--line); }
     .brand { display:flex; align-items:center; gap:11px; font-size:19px; font-weight:900; letter-spacing:-.5px; }
-    .brand-mark { width:38px; height:38px; display:grid; place-items:center; border-radius:13px; background:var(--red); box-shadow:0 5px 18px #ef5c5540; font-size:21px; }
+    .brand-mark { width:38px; height:38px; display:grid; place-items:center; border-radius:13px; background:var(--rust); box-shadow:0 5px 18px #d7663640; font-size:21px; }
     .brand span:last-child { color:var(--gold); }
     .top-note { color:var(--muted); font-size:13px; }
     main { max-width:1240px; margin:auto; padding:0 28px 56px; }
     .hero { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:43px 0 30px; }
     .eyebrow { color:var(--gold); font-size:12px; font-weight:900; letter-spacing:2px; text-transform:uppercase; }
     h1 { margin:8px 0 9px; font-size:clamp(34px,5vw,53px); letter-spacing:-2.7px; line-height:1.04; }
-    h1 em { color:var(--red); font-style:normal; }
+    h1 em { color:var(--rust); font-style:normal; }
     .hero p { margin:0; color:var(--muted); font-size:15px; }
-    .hero-badge { flex:0 0 auto; padding:13px 17px; border:1px solid #f3c76b55; border-radius:16px; background:#f3c76b12; color:var(--gold); font-weight:800; font-size:13px; }
+    .hero-badge { flex:0 0 auto; padding:13px 17px; border:1px solid #f0b94f55; border-radius:16px; background:#f0b94f12; color:var(--gold); font-weight:800; font-size:13px; }
     .toolbar { display:flex; align-items:center; justify-content:space-between; gap:18px; margin:4px 0 21px; }
     .categories { display:flex; flex-wrap:wrap; gap:9px; }
     .category { border:1px solid var(--line); background:var(--panel); padding:9px 15px; border-radius:999px; cursor:pointer; font-size:13px; font-weight:750; transition:.18s ease; }
-    .category:hover, .category.active { border-color:var(--gold); color:#172d24; background:var(--gold); }
-    .search { width:min(240px, 42vw); border:1px solid var(--line); background:#071b16a8; border-radius:12px; padding:11px 13px; outline:none; color:var(--cream); }
+    .category:hover, .category.active { border-color:var(--gold); color:#39251d; background:var(--gold); }
+    .search { width:min(240px, 42vw); border:1px solid var(--line); background:#21140fa8; border-radius:12px; padding:11px 13px; outline:none; color:var(--cream); }
     .search:focus { border-color:var(--gold); }
     .content { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(290px,.65fr); gap:22px; align-items:start; }
-    .game-panel, .library-panel { border:1px solid var(--line); background:var(--panel); border-radius:20px; overflow:hidden; box-shadow:0 18px 55px #04140f35; }
+    .game-panel, .library-panel { border:1px solid var(--line); background:var(--panel); border-radius:20px; overflow:hidden; box-shadow:0 18px 55px #1e100b55; }
     .panel-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:17px 19px; border-bottom:1px solid var(--line); }
     .game-title { font-size:17px; font-weight:900; }
     .game-category { margin-top:4px; color:var(--muted); font-size:12px; }
-    .live { color:#b8ebc4; font-size:11px; font-weight:900; text-transform:uppercase; letter-spacing:1px; }
-    .frame-wrap { min-height:610px; display:grid; place-items:center; padding:16px; background:radial-gradient(ellipse at center,#1d3e32,#0a1e18 75%); }
-    .game-iframe { display:block; width:min(100%,480px); height: min(76vh,800px); min-height:540px; border:0; border-radius:12px; background:#07130f; }
+    .live { color:#c7e5a6; font-size:11px; font-weight:900; text-transform:uppercase; letter-spacing:1px; }
+    .frame-wrap { min-height:610px; display:grid; place-items:center; padding:16px; background:radial-gradient(ellipse at center,#67432f,#291b15 75%); }
+    .game-iframe { display:block; width:min(100%,480px); height:min(76vh,800px); min-height:540px; border:0; border-radius:12px; background:#21140f; }
     .game-foot { display:flex; justify-content:space-between; gap:12px; padding:13px 18px; color:var(--muted); font-size:12px; }
     .library-panel { padding:18px; }
     .library-head { display:flex; align-items:center; justify-content:space-between; margin:0 0 15px; }
     .library-head h2 { margin:0; font-size:16px; }
     .count { color:var(--muted); font-size:12px; }
-    .game-card { width:100%; display:flex; align-items:center; gap:13px; text-align:left; border:1px solid var(--line); border-radius:15px; background:#ffffff08; padding:12px; cursor:pointer; transition:.2s ease; }
-    .game-card:hover, .game-card.selected { border-color:#f3c76b99; background:#f3c76b12; transform:translateY(-1px); }
-    .game-icon { flex:0 0 52px; height:52px; display:grid; place-items:center; border-radius:13px; background:linear-gradient(145deg,#ef5c55,#a52d3a); font-size:27px; }
+    .game-card { width:100%; display:flex; align-items:center; gap:13px; text-align:left; border:1px solid var(--line); border-radius:15px; background:#ffffff08; padding:12px; cursor:pointer; transition:.18s ease; }
+    .game-card:hover, .game-card.selected { border-color:#f0b94f99; background:#f0b94f12; transform:translateY(-1px); }
+    .game-icon { flex:0 0 52px; height:52px; display:grid; place-items:center; border-radius:13px; background:linear-gradient(145deg,#d76636,#a9432b); font-size:27px; }
     .card-copy { min-width:0; flex:1; }
     .card-copy strong { display:block; font-size:14px; }
     .card-copy small { display:block; margin-top:5px; color:var(--muted); font-size:11px; }
@@ -72,26 +72,26 @@
     .empty { display:none; padding:22px 8px; color:var(--muted); text-align:center; font-size:13px; }
     .tip { margin-top:16px; padding:13px 14px; border-radius:13px; background:#ffffff08; color:var(--muted); font-size:12px; line-height:1.55; }
     .tip strong { color:var(--gold); }
-    footer { display:flex; justify-content:space-between; gap:12px; max-width:1240px; margin:auto; padding:0 28px 26px; color:#9fb3a7; font-size:11px; }
-    @media (max-width:780px) { .topbar, main { padding-left:18px; padding-right:18px; } .hero { align-items:flex-start; padding-top:34px; } .hero-badge { display:none; } .content { grid-template-columns:1fr; } .frame-wrap { min-height:580px; } .game-iframe { height:min(78vh,800px); min-height:520px; } footer { padding-left:18px; padding-right:18px; } }
-    @media (max-width:480px) { .top-note { display:none; } .toolbar { align-items:stretch; flex-direction:column; } .search { width:100%; } .hero p { max-width:280px; line-height:1.5; } .game-foot { flex-direction:column; } .frame-wrap { padding:10px; min-height:540px; } .game-iframe { min-height:500px; } }
+    footer { display:flex; justify-content:space-between; gap:12px; max-width:1240px; margin:auto; padding:0 28px 26px; color:#c0a993; font-size:11px; }
+    @media (max-width:780px) { .topbar, main { padding-left:18px; padding-right:18px; } .hero { align-items:flex-start; padding-top:34px; } .hero-badge { display:none; } .content { grid-template-columns:1fr; } .frame-wrap { min-height:560px; } .game-iframe { height:min(75vh,800px); } footer { padding-left:18px; padding-right:18px; } }
+    @media (max-width:480px) { .top-note { display:none; } .toolbar { align-items:stretch; flex-direction:column; } .search { width:100%; } .hero p { max-width:280px; line-height:1.5; } .game-foot { flex-direction:column; } .frame-wrap { min-height:520px; padding:10px; } .game-iframe { min-height:500px; } }
   </style>
 </head>
 <body>
-  <div class="snow" aria-hidden="true"></div>
+  <div class="fall-leaves" aria-hidden="true"></div>
   <div class="site">
     <header class="topbar">
-      <div class="brand"><div class="brand-mark" aria-hidden="true">🎄</div><div>Christmas <span>Arcade</span></div></div>
-      <div class="top-note">A little festive fun, whenever you need it ✨</div>
+      <div class="brand"><div class="brand-mark" aria-hidden="true">🍂</div><div>Thanksgiving <span>Arcade</span></div></div>
+      <div class="top-note">A little autumn fun, whenever you need it 🍁</div>
     </header>
     <main>
       <section class="hero" aria-labelledby="page-title">
-        <div><div class="eyebrow">❄ The holiday game room ❄</div><h1 id="page-title">Play a little. <em>Smile a lot.</em></h1><p>Your cozy corner for quick browser games and Christmas cheer.</p></div>
-        <div class="hero-badge">🎁 &nbsp; Fresh fun for the holidays</div>
+        <div><div class="eyebrow">🍁 The fall game room 🍁</div><h1 id="page-title">Play a little. <em>Smile a lot.</em></h1><p>Your cozy corner for quick browser games and Thanksgiving cheer.</p></div>
+        <div class="hero-badge">🦃 &nbsp; Fresh fun for fall</div>
       </section>
       <section class="toolbar" aria-label="Game filters">
         <nav class="categories" aria-label="Categories">
-          <button class="category active" type="button" data-category="all" aria-pressed="true">✨ All games</button>
+          <button class="category active" type="button" data-category="all" aria-pressed="true">🍂 All games</button>
           <button class="category" type="button" data-category="arcade" aria-pressed="false">🕹️ Arcade</button>
           <button class="category" type="button" data-category="skill" aria-pressed="false">⭐ Skill</button>
         </nav>
@@ -99,23 +99,23 @@
       </section>
       <section class="content" aria-label="Game library">
         <article class="game-panel" aria-label="Game player">
-          <div class="panel-heading"><div><div class="game-title">Stickman Hook</div><div class="game-category">⭐ Skill &nbsp;·&nbsp; 🕹️ Arcade</div></div><div class="live">● Ready to play</div></div>
+          <div class="panel-heading"><div><div class="game-title">Slope</div><div class="game-category">⭐ Skill &nbsp;·&nbsp; 🕹️ Arcade</div></div><div class="live">● Ready to play</div></div>
           <div class="frame-wrap">
-            <iframe class="game-iframe" id="game-area" src="https://highwaytrafficunblocked.github.io/a/stickman-hook" width="480" height="800" scrolling="none" frameborder="0" allowfullscreen title="Stickman Hook game"></iframe>
+            <iframe class="game-iframe" id="game-area" src="https://highwaytrafficunblocked.github.io/a/slope" width="480" height="800" scrolling="none" frameborder="0" allowfullscreen></iframe>
           </div>
-          <div class="game-foot"><span>Having trouble? The game is hosted by an external site.</span><span>🎄 Happy holidays!</span></div>
+          <div class="game-foot"><span>Having trouble? The game is hosted by an external site.</span><span>🍁 Happy Thanksgiving!</span></div>
         </article>
         <aside class="library-panel">
           <div class="library-head"><h2>Choose your game</h2><span class="count" id="count">1 game</span></div>
-          <button class="game-card selected" type="button" data-name="stickman hook" data-tags="arcade skill" aria-label="Play Stickman Hook">
-            <span class="game-icon" aria-hidden="true">🪝</span><span class="card-copy"><strong>Stickman Hook</strong><small>Skill · Arcade</small></span><span class="play-arrow" aria-hidden="true">→</span>
+          <button class="game-card selected" type="button" data-name="slope" data-tags="arcade skill" aria-label="Play Slope">
+            <span class="game-icon" aria-hidden="true">🎢</span><span class="card-copy"><strong>Slope</strong><small>Skill · Arcade</small></span><span class="play-arrow" aria-hidden="true">›</span>
           </button>
-          <div class="empty" id="empty">No games found. Try another search or category. 🎅</div>
-          <div class="tip"><strong>🎅 North Pole tip</strong><br>Pick a category or search the library to find your next game. More festive games can be added here anytime!</div>
+          <div class="empty" id="empty">No games found. Try another search or category. 🍂</div>
+          <div class="tip"><strong>🦃 Autumn tip</strong><br>Pick a category or search the library to find your next game. More games can be added here anytime!</div>
         </aside>
       </section>
     </main>
-    <footer><span>Made with ❤️ and a little Christmas magic</span><span>Play responsibly · Games are provided by their respective hosts</span></footer>
+    <footer><span>Made with ❤️ and a little autumn magic</span><span>Play responsibly · Games are provided by their respective hosts</span></footer>
   </div>
   <script>
     const categoryButtons = [...document.querySelectorAll('.category')];
